@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Панель администратора</h1>
+            <button id="logout-btn" class="btn btn-logout">Выйти</button>
+        </header>
+        
+        <div class="admin-panel">
+            <div class="sidebar">
+                <button class="sidebar-btn active" data-section="surveys">Опросы</button>
+                <button class="sidebar-btn" data-section="add-survey">Добавить опрос</button>
+                <button class="sidebar-btn" data-section="results">Результаты</button>
+            </div>
+            
+            <div class="content">
+                <div class="section active" id="surveys-section">
+                    <h2>Список опросов</h2>
+                    <div id="surveys-list"></div>
+                </div>
+                
+                <div class="section" id="add-survey-section">
+                    <h2>Создать новый опрос</h2>
+                    <form id="add-survey-form">
+                        <div class="form-group">
+                            <label for="survey-title">Название опроса:</label>
+                            <input type="text" id="survey-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="survey-description">Описание:</label>
+                            <textarea id="survey-description" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Создать опрос</button>
+                    </form>
+                    
+                    <div id="questions-section" style="display: none;">
+                        <h3>Вопросы для опроса: <span id="current-survey-title"></span></h3>
+                        <form id="add-question-form">
+                            <div class="form-group">
+                                <label for="question-text">Текст вопроса:</label>
+                                <input type="text" id="question-text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Варианты ответов:</label>
+                                <input type="text" class="option-input" placeholder="Вариант 1" required>
+                                <input type="text" class="option-input" placeholder="Вариант 2" required>
+                                <input type="text" class="option-input" placeholder="Вариант 3" required>
+                                <input type="text" class="option-input" placeholder="Вариант 4" required>
+                            </div>
+                            <button type="submit" class="btn">Добавить вопрос</button>
+                        </form>
+                        
+                        <div id="questions-list"></div>
+                        <button id="finish-survey-btn" class="btn btn-success">Завершить создание опроса</button>
+                    </div>
+                </div>
+                
+                <div class="section" id="results-section">
+                    <h2>Результаты опросов</h2>
+                    <div id="results-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/admin.js"></script>
+    <script src="scripts/api.js"></script>
+</body>
+</html>

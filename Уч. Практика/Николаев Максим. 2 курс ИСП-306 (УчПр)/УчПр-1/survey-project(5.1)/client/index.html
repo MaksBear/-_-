@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система опросов</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <h1>Система опросов</h1>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
+                <button class="tab-btn" data-tab="register-admin">Регистрация администратора</button>
+            </div>
+            
+            <div class="tab-content active" id="login-tab">
+                <h2>Вход в систему</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Пароль:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-type">Тип пользователя:</label>
+                        <select id="user-type">
+                            <option value="user">Обычный пользователь</option>
+                            <option value="admin">Администратор</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Войти</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register-tab">
+                <h2>Регистрация пользователя</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="reg-name">Имя:</label>
+                        <input type="text" id="reg-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email:</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль:</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <button type="submit" class="btn">Зарегистрироваться</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register-admin-tab">
+                <h2>Регистрация администратора</h2>
+                <form id="register-admin-form">
+                    <div class="form-group">
+                        <label for="admin-name">Имя:</label>
+                        <input type="text" id="admin-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-email">Email:</label>
+                        <input type="email" id="admin-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Пароль:</label>
+                        <input type="password" id="admin-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-code">Код доступа:</label>
+                        <input type="password" id="admin-code" placeholder="Специальный код для регистрации администратора" required>
+                    </div>
+                    <button type="submit" class="btn">Зарегистрировать администратора</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/api.js"></script>
+</body>
+</html>

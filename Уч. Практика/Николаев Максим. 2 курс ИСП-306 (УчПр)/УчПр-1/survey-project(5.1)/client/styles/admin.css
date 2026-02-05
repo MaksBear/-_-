@@ -1,0 +1,81 @@
+.admin-panel {
+    display: flex;
+    gap: 30px;
+    min-height: 600px;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-btn {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.sidebar-btn.active {
+    border-left-color: #4CAF50;
+    background-color: #f0f9ff;
+    font-weight: bold;
+}
+
+.sidebar-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.content {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.survey-item, .question-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #2196F3;
+}
+
+.survey-item h3, .question-item h4 {
+    margin-bottom: 10px;
+}
+
+.option-input {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.result-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.chart-container {
+    margin-top: 20px;
+    height: 300px;
+}

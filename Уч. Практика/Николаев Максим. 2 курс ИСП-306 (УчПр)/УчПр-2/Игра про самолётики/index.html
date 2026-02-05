@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воздушная битва</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>✈️ ВОЗДУШНАЯ БИТВА</h1>
+        
+        <div class="game-info">
+            <div class="score-display">
+                <span>Сбито: </span>
+                <span id="score">0</span>
+            </div>
+            <div class="time-display">
+                <span>Время: </span>
+                <span id="time">0с</span>
+            </div>
+            <div class="lives-display">
+                <span>Жизни: </span>
+                <span id="lives">3</span>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button id="start-btn" class="btn start-btn">✈️ НАЧАТЬ ИГРУ</button>
+            <button id="restart-btn" class="btn restart-btn" disabled>🔄 ЗАНОВО</button>
+        </div>
+
+        <div class="game-area">
+            <div id="game-field">
+                <div id="player-plane" class="player-plane"></div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Управление:</h3>
+            <p>↑ ↓ (Стрелки вверх/вниз) или W/S - движение</p>
+            <p>ПРОБЕЛ или КЛАВИША F - стрельба</p>
+            <p>Облетайте вражеские самолеты и сбивайте их!</p>
+        </div>
+
+        <div id="game-over" class="game-over hidden">
+            <h2>💥 GAME OVER</h2>
+            <p>Сбито самолетов: <span id="final-score">0</span></p>
+            <p>Время выживания: <span id="final-time">0с</span></p>
+            <button id="game-over-restart" class="btn start-btn">Играть снова</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

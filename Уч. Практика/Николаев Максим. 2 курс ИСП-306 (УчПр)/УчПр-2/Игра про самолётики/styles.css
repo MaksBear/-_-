@@ -1,0 +1,526 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a2a3a 0%, #0c1a2b 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.game-container {
+    background: rgba(10, 25, 47, 0.9);
+    border-radius: 10px;
+    padding: 25px;
+    width: 100%;
+    max-width: 1000px;
+    border: 3px solid #c0a062;
+    box-shadow: 0 0 30px rgba(192, 160, 98, 0.3),
+                0 0 60px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, 
+        transparent 20%, 
+        rgba(192, 160, 98, 0.1) 25%, 
+        transparent 30%);
+    z-index: -1;
+    border-radius: 12px;
+}
+
+h1 {
+    text-align: center;
+    color: #c0a062;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(192, 160, 98, 0.7),
+                 0 0 20px rgba(192, 160, 98, 0.4);
+    font-weight: 900;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #c0a062, transparent);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(40, 30, 20, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid #8b7355;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.score-display, .time-display, .lives-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.score-display span:first-child,
+.time-display span:first-child,
+.lives-display span:first-child {
+    color: #c0a062;
+}
+
+#score, #time, #lives {
+    color: #fff;
+    font-size: 1.6rem;
+    min-width: 60px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #c0a062;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.btn {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+}
+
+.start-btn {
+    background: linear-gradient(45deg, #8b7355, #c0a062);
+    color: white;
+    border: 2px solid #c0a062;
+}
+
+.start-btn:hover {
+    background: linear-gradient(45deg, #c0a062, #8b7355);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(192, 160, 98, 0.4);
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #5a4a32, #8b7355);
+    color: #c0a062;
+    border: 2px solid #8b7355;
+}
+
+.restart-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #8b7355, #5a4a32);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(91, 74, 50, 0.4);
+}
+
+.restart-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(to bottom, 
+        #87CEEB 0%, 
+        #B0E0E6 30%, 
+        #1E90FF 100%);
+    border: 3px solid #8b7355;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 25px 0;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+#game-field {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1%, transparent 2%),
+        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 1%, transparent 2%),
+        radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.1) 1%, transparent 2%),
+        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.1) 1%, transparent 2%);
+    background-size: 300px 300px;
+}
+
+/* Игрок - Истребитель (например, Spitfire или P-51 Mustang) */
+.player-plane {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 40px;
+    z-index: 10;
+    transition: top 0.1s ease;
+}
+
+.player-plane::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #538344 0%, #085e02 100%);
+    clip-path: polygon(
+        0% 50%,       /* Нос - левая точка */
+        15% 30%,      /* Верх фюзеляжа */
+        40% 20%,      /* Начало крыла */
+        40% 0%,       /* Верх крыла */
+        60% 0%,       /* Верх крыла */
+        60% 20%,      /* Начало крыла */
+        85% 30%,      /* Верх фюзеляжа */
+        100% 50%,     /* Хвост */
+        85% 70%,      /* Низ фюзеляжа */
+        60% 80%,      /* Начало нижнего крыла */
+        60% 100%,     /* Низ крыла */
+        40% 100%,     /* Низ крыла */
+        40% 80%,      /* Начало нижнего крыла */
+        15% 70%       /* Низ фюзеляжа */
+    );
+    border-radius: 5px 20px 20px 5px;
+    box-shadow: 
+        inset -2px 0 5px rgba(255, 255, 255, 0.3),
+        0 0 15px rgba(18, 146, 7, 0.7);
+}
+
+.player-plane::after {
+    content: '★';
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: rgb(201, 3, 3);
+    font-size: 14px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+/* Винт истребителя */
+.player-plane .propeller {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(45deg, #8B4513, #A0522D);
+    border-radius: 50%;
+    animation: spin 0.1s linear infinite;
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Вражеский самолет - Истребитель противника (например, Messerschmitt Bf 109) */
+.enemy-plane {
+    position: absolute;
+    right: 0;
+    width: 90px;
+    height: 35px;
+    z-index: 5;
+}
+
+.enemy-plane::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+    clip-path: polygon(
+        0% 50%,       
+        15% 30%,     
+        40% 20%,      
+        40% 0%,       
+        60% 0%,       
+        60% 20%,     
+        85% 30%,    
+        100% 50%,     
+        85% 70%,      
+        60% 80%,     
+        60% 100%,    
+        40% 100%,     
+        40% 80%,     
+        15% 70%       
+    );
+    border-radius: 20px 5px 5px 20px;
+    transform: rotate(180deg);
+    box-shadow: 
+        inset 2px 0 5px rgba(255, 255, 255, 0.2),
+        0 0 15px rgba(220, 20, 60, 0.7);
+}
+
+.enemy-plane::after {
+    content: '✖';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%) rotate(180deg);
+    color: white;
+    font-size: 12px;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+/* Винт вражеского самолета */
+.enemy-plane .propeller {
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(45deg, #696969, #808080);
+    border-radius: 50%;
+    animation: spin 0.08s linear infinite;
+    box-shadow: 0 0 10px rgba(105, 105, 105, 0.5);
+}
+
+/* Пули */
+.bullet {
+    position: absolute;
+    width: 6px;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.9);
+    z-index: 5;
+}
+
+/* Трассирующие пули (след) */
+.bullet::after {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 165, 0, 0.5), 
+        rgba(255, 69, 0, 0.3), 
+        transparent);
+}
+
+.explosion {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, 
+        #FF4500 0%, 
+        #FF8C00 20%, 
+        #FFD700 40%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: explode 0.5s forwards;
+    z-index: 20;
+    filter: blur(2px);
+}
+
+@keyframes explode {
+    0% { transform: scale(0.1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.instructions {
+    background: rgba(40, 30, 20, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 25px;
+    border-left: 4px solid #c0a062;
+}
+
+.instructions h3 {
+    color: #c0a062;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.instructions p {
+    margin: 5px 0;
+    color: #ddd;
+    font-size: 1.1rem;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(17, 32, 99, 0.95);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 100;
+    border: 3px solid #8B0000;
+    box-shadow: 0 0 40px rgba(139, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+}
+
+.game-over h2 {
+    color: #B22222;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(178, 34, 34, 0.7);
+}
+
+.game-over p {
+    font-size: 1.4rem;
+    margin: 15px 0;
+    color: #fff;
+}
+
+#final-score, #final-time {
+    color: #c0a062;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Облака */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: float 20s infinite linear;
+}
+
+.cloud:nth-child(odd) {
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-100px) translateY(0);
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px)) translateY(20px);
+    }
+}
+
+/* Пропеллеры (добавим их через JavaScript) */
+.propeller-blade {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: #8B4513;
+    top: 50%;
+    left: 50%;
+    transform-origin: center bottom;
+    border-radius: 1px;
+}
+
+/* Дым от самолетов */
+.smoke {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: fadeSmoke 1s forwards;
+}
+
+@keyframes fadeSmoke {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(3); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px rgba(192, 160, 98, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(192, 160, 98, 0.8); }
+    100% { box-shadow: 0 0 10px rgba(192, 160, 98, 0.5); }
+}
+
+.start-btn {
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .game-area {
+        height: 400px;
+    }
+    
+    .player-plane {
+        width: 80px;
+        height: 32px;
+    }
+    
+    .enemy-plane {
+        width: 72px;
+        height: 28px;
+    }
+}

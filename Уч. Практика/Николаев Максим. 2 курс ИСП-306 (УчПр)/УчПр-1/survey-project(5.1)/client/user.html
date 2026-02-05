@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опросы</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/user.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Доступные опросы</h1>
+            <button id="logout-btn" class="btn btn-logout">Выйти</button>
+        </header>
+        
+        <div id="available-surveys">
+            <h2>Опросы для прохождения</h2>
+            <div id="surveys-list"></div>
+        </div>
+        
+        <div id="survey-container" style="display: none;">
+            <h2 id="survey-title"></h2>
+            <p id="survey-description"></p>
+            
+            <form id="survey-form">
+                <div id="questions-container"></div>
+                <button type="submit" class="btn">Завершить опрос</button>
+            </form>
+        </div>
+        
+        <div id="results-container" style="display: none;">
+            <h2>Результаты опроса</h2>
+            <div id="results-content"></div>
+            <button id="back-to-surveys" class="btn">Вернуться к списку опросов</button>
+        </div>
+    </div>
+    
+    <script src="scripts/user.js"></script>
+    <script src="scripts/api.js"></script>
+</body>
+</html>
